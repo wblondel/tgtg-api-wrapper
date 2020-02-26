@@ -1,0 +1,459 @@
+openapi: 3.0.0
+info:
+  title: TooGoodToGo API
+  description: Attempt to reverse-engineer the TooGoodToGo API
+  version: 0.0.1
+
+servers:
+  - url: https://backend-prod-lb.tgtg.ninja/api
+    description: Main (production) server
+
+tags:
+  - name: "app"
+    description: "Everything about App"
+  - name: "user"
+    description: "Everything about User"
+  - name: "auth"
+    description: "Everything about Auth"
+
+paths:
+  #TODO: Object mo10871c(Continuation<? super AppSettings> cVar);
+  /app/v1/app_settings:
+    post:
+      tags:
+        - app
+      summary: To be determined.
+
+      requestBody:
+        $ref: '#/components/requestBodies/UnknownBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppSettings'
+
+  #TODO: 1/ Object mo10866a(Continuation<? super UserSettings> cVar);
+  #TODO: 2/ Object mo10876g(Continuation<? super UserSettings> cVar);
+  /app/v1/user_settings:
+    post:
+      tags:
+        - app
+      summary: To be determined.
+
+      requestBody:
+        $ref: '#/components/requestBodies/UnknownBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettings'
+
+  #TODO: Object mo10873d(Continuation<? super UserData> cVar);
+  /user/v1/:
+    post:
+      tags:
+        - user
+      summary: To be determined.
+
+      requestBody:
+        $ref: '#/components/requestBodies/UnknownBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+
+  #TODO: Object mo10836a(@Body UserData userData, Continuation<? super UserData> cVar);
+  /user/v1/update:
+    post:
+      tags:
+        - user
+      summary: To be determined.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserData'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+
+  #TODO: Object mo10849a(@Body ResetPasswordRequest resetPasswordRequest, Continuation<? super ResponseBody> cVar);
+  /user/v1/resetPassword:
+    post:
+      tags:
+        - user
+      summary: To be determined.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unknown'
+
+  #TODO: Object mo10845a(@Body ChangePasswordRequest changePasswordRequest, Continuation<? super ResponseBody> cVar);
+  /user/v1/changePassword:
+    post:
+      tags:
+        - user
+      summary: To be determined.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unknown'
+
+  #TODO: Object mo10868b(@Path(encoded = true, value = "token") String str, Continuation<? super C6979q<ResponseBody>> cVar);
+  /user/v1/confirmEmail/{token}:
+    post:
+      tags:
+        - user
+      summary: To be determined.
+
+      parameters:
+        - name: token
+          in: path
+          required: true
+          description: Email confirmation token
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/UnknownBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unknown'
+
+  #TODO: Object mo10847a(@Body LoginByEmailRequest loginByEmailRequest, Continuation<? super LoginResponse> cVar);
+  /auth/v1/loginByEmail:
+    post:
+      tags:
+        - auth
+      summary: Logs in a user by email.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                device_type:
+                  type: string
+                  description: "Device type"
+                  enum: [UNKNOWN, IOS, ANDROID]
+                email:
+                  type: string
+                  description: "User's email"
+                password:
+                  type: string
+                  description: "User's password"
+            example:
+              device_type: "ANDROID"
+              email: "john.doe@dev.local"
+              password: "p@ssw0rd"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: VALIDATION_ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: FAILED_LOGIN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        default:
+          description: Error(s)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+
+  #TODO: Object mo10848a(@Body LoginByThirdPartyRequest loginByThirdPartyRequest, Continuation<? super LoginResponse> cVar);
+  /auth/v1/loginByThirdParty:
+    post:
+      tags:
+        - auth
+      summary: Logs in a user by a third party.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginByThirdPartyRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  #TODO: Object mo10850a(@Body SignUpByEmailRequest signUpByEmailRequest, Continuation<? super LoginResponse> cVar);
+  /auth/v1/signUpByEmail:
+    post:
+      tags:
+        - auth
+      summary: Sign up by email.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpByEmailRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  #TODO: Object mo10851a(@Body SignUpByThirdPartyRequest signUpByThirdPartyRequest, Continuation<? super LoginResponse> cVar);
+  /auth/v1/signUpByThirdParty:
+    post:
+      tags:
+        - auth
+      summary: Sign up by third party.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpByThirdPartyRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  #TODO: 1/ Object mo10835a(@Body RefreshToken refreshToken, Continuation<? super C6979q<RefreshTokenResult>> cVar);
+  #TODO: 2/ Maybe<C6979q<RefreshTokenResult>> mo10819a(@Body RefreshToken refreshToken);
+  /auth/v1/token/refresh:
+    post:
+      tags:
+        - auth
+      summary: Refresh the auth token
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshToken'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshTokenResult'
+
+  #TODO: Object mo10875f(Continuation<? super Unit> cVar);
+  /auth/v1/logout:
+    post:
+      tags:
+        - auth
+      summary: Logs out the user
+      responses:
+        '200':
+          description: User was logged out.
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+
+components:
+  # Authentication
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+  # Describing Bodies
+  requestBodies:
+    UnknownBody:
+      description: Unknown JSON body
+      required:  true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Unknown'
+
+  # Describing Reponses
+  schemas:
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error type
+              message:
+                type: string
+                description: Error message
+    Unknown:
+      type: object
+      properties:
+        param1:
+          type: integer
+          description: unknown
+        param2:
+          type: string
+          description: unknown
+    LoginResponse:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    AppSettings:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    UserSettings:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    UserData:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    ResetPasswordRequest:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    ChangePasswordRequest:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    LoginByThirdPartyRequest:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    SignUpByEmailRequest:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    SignUpByThirdPartyRequest:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    RefreshToken:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+    RefreshTokenResult:
+      type: object
+      properties: #TODO
+        param1:
+          type: integer
+          description: ...
+        param2:
+          type: string
+          description: ...
+
+  # Responses
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+
+security:
+  - bearerAuth: []
