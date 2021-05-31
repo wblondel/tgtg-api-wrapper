@@ -7,7 +7,7 @@ A Python wrapper will be written next.
 
 ## List of API servers
 
-The list of TooGoodToGo's API servers can be found at this address: (https://meta.apptoogoodtogo.com/env/v1/list.json)
+The list of TooGoodToGo's API servers can be found at this address: https://meta.apptoogoodtogo.com/env/v1/list.json
 
 On 31st May, 2021, the servers are:
 
