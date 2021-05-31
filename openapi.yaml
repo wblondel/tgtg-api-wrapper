@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: TooGoodToGo API
+  description: Attempt to reverse-engineer the TooGoodToGo API
+  version: 0.0.1
+
+servers:
+  - url: https://apptoogoodtogo.com/api/
+    description: Production (Nearest)
+  - url: https://euw1.apptoogoodtogo.com/api/
+    description: Production (EU)
+  - url: https://use1.apptoogoodtogo.com/api/
+    description: Production (US)
+    
+  - url: https://backend-staging.apptoogoodtogo.com/api
+    description: Staging (Nearest)
+  - url: https://backend-staging-euw1.apptoogoodtogo.com/api
+    description: Staging (EU)
+  - url: https://backend-staging-use1.apptoogoodtogo.com/api
+    description: Staging (US)
+    
+  - url: https://gold-backend-internal.dev-euw1.tgtg.ninja/api
+    description: Gold (EU) (Requires VPN)
+  - url: https://gold-backend-internal.dev-use1.tgtg.ninja/api
+    description: Gold (US) (Requires VPN)
+    
+  - url: https://backend-test1.apptoogoodtogo.com/api
+    description: Test1 (EU)
+  - url: https://backend-test1-use1.apptoogoodtogo.com/api
+    description: Test1 (US)
+    
+  - url: https://backend-test2.apptoogoodtogo.com/api
+    description: Test2 (EU)
+  - url: https://backend-test2-use1.apptoogoodtogo.com/api
+    description: Test2 (US)
+
+  - url: https://backend-test3.apptoogoodtogo.com/api
+    description: Test3 (EU)
+  - url: https://backend-test3-use1.apptoogoodtogo.com/api
+    description: Test3 (US)
+    
+  - url: https://backend-test4.apptoogoodtogo.com/api
+    description: Test4 (EU)
+  - url: https://backend-test4-use1.apptoogoodtogo.com/api
+    description: Test4 (US)
+    
+  - url: https://backend-test5.apptoogoodtogo.com/api
+    description: Test5 (EU)    
+  - url: https://backend-test5-use1.apptoogoodtogo.com/api
+    description: Test5 (US)
+    
+  - url: https://backend-test6.apptoogoodtogo.com/api
+    description: Test6 (EU)
+  - url: https://backend-test6-use1.apptoogoodtogo.com/api
+    description: Test6 (US)
+    
+  - url: https://backend-test7.apptoogoodtogo.com/api
+    description: Test7 (EU)
+  - url: https://backend-test7-use1.apptoogoodtogo.com/api
+    description: Test7 (US)
+    
+  - url: https://backend-test8.apptoogoodtogo.com/api
+    description: Test8 (EU)
+  - url: https://backend-test8-use1.apptoogoodtogo.com/api
+    description: Test8 (US)
+    
+  - url: https://backend-test9.apptoogoodtogo.com/api
+    description: Test9 (EU)
+  - url: https://backend-test9-use1.apptoogoodtogo.com/api
+    description: Test9 (US)
+    
+    
+    
+tags:
+  - name: "app"
+    description: ""
+  - name: "auth"
+    description: ""
+  - name: "basket"
+    description: ""
+  - name: "gdpr"
+    description: ""
+  - name: "hiddenstore"
+    description: ""
+  - name: "item"
+    description: ""
+  - name: "location"
+    description: ""
+  - name: "map"
+    description: ""
+  - name: "order"
+    description: ""
+  - name: "payment"
+    description: ""
+  - name: "selfonboarding"
+    description: ""
+  - name: "support"
+    description: ""
+  - name: "tracking"
+    description: ""
+  - name: "user"
+    description: ""
+  - name: "voucher"
+    description: ""
+
+
+paths:
+  /app/v1/app_settings:
+    post:
+      tags:
+        - app
+      summary: TODO
+      parameters:
+        - in: header
+          name: Accept-Language
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppSettings'
+        '400':
+          description: Bad request. The Accept-Language header is required.
+
+components:
+  # Authentication
+  #securitySchemes:
+  #  bearerAuth:
+  #    type: http
+  #    scheme: bearer
+ 
+ # Describing Responses
+  schemas:
+    AppSettings:
+      type: object
+      properties:
+        on_app_open_message:
+          type: string
+          enum: [BLOCKING]
+        open_message_type:
+          type: string
+          enum: [BLOCKING]
+        open_message_url:
+          type: string
+          format: uri
+          example: 'https://space.toogoodtogo.com/app-update/android'
+        countries:
+          type: array
+          items:
+            type: object
+            properties:
+              country_iso_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+                example: 'FR'
+              terms_url:
+                type: string
+                format: uri
+                example: 'https://toogoodtogo.fr/fr/terms-and-conditions'
+              privacy_url:
+                type: string
+                format: uri
+                example: 'https://toogoodtogo.fr/fr/privacy-policy'
+            required:
+              - country_iso_code
+              - terms_url
+              - privacy_url
+          minItems: 1
+        purchase_rating_start:
+          type: string
+          pattern: '^\d{2}:\d{2}:\d{2}$'
+          example: '06:00:00'
+        purchase_rating_end:
+          type: string
+          pattern: '^\d{2}:\d{2}:\d{2}$'
+          example: '23:00:00'
+        purchase_rating_delay:
+          type: number
+          format: double
+          example: "5400.000000000"
+      required:
+        - countries
+        - purchase_rating_start
+        - purchase_rating_end
+        - purchase_rating_delay
+          
+
+#security:
+#  - bearerAuth: []
