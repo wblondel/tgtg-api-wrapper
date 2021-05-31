@@ -45,8 +45,11 @@ The base path for the API is `/api/`.
 The documentation seems to be at `/api/api-docs` but is only accessible through their VPN.
 
 A GET request to `/web` throws a 403 Forbidden error with the message "Invalid CSRF token".
+
 A GET request to `/logout` redirects (302) to `/login?logout`, which throws a 404 Not Found error.
+
 A GET request to `/ping` returns `pong` :D
+
 A GET request to `/api/` on a public URL redirects (302) to `/api/api-docs` on the corresponding "Hidden" server.
 
 The APIs seem to be built with Spring Boot (clue: the `Whitelabel Error Page`)
