@@ -1,0 +1,134 @@
+{
+    "entries": [
+      {
+        "name": "Prod (Nearest)",
+        "domain": "apptoogoodtogo.com",
+        "production": true
+      },
+      {
+        "name": "Prod (EU)",
+        "domain": "euw1.apptoogoodtogo.com",
+        "production": true
+      },
+      {
+        "name": "Prod (US)",
+        "domain": "use1.apptoogoodtogo.com",
+        "production": true
+      },
+      {
+        "name": "Staging (Nearest)",
+        "domain": "backend-staging.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Staging (EU)",
+        "domain": "backend-staging-euw1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Staging (US)",
+        "domain": "backend-staging-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Gold (EU) (Requires VPN)",
+        "domain": "gold-backend-internal.dev-euw1.tgtg.ninja",
+        "production": false
+      },
+      {
+        "name": "Gold (US) (Requires VPN)",
+        "domain": "gold-backend-internal.dev-use1.tgtg.ninja",
+        "production": false
+      },
+      {
+        "name": "Test1 (EU)",
+        "domain": "backend-test1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test1 (US)",
+        "domain": "backend-test1-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test2 (EU)",
+        "domain": "backend-test2.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test2 (US)",
+        "domain": "backend-test2-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test3 (EU)",
+        "domain": "backend-test3.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test3 (US)",
+        "domain": "backend-test3-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test4 (EU)",
+        "domain": "backend-test4.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test4 (US)",
+        "domain": "backend-test4-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test5 (EU)",
+        "domain": "backend-test5.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test5 (US)",
+        "domain": "backend-test5-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test6 (EU)",
+        "domain": "backend-test6.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test6 (US)",
+        "domain": "backend-test6-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test7 (EU)",
+        "domain": "backend-test7.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test7 (US)",
+        "domain": "backend-test7-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test8 (EU)",
+        "domain": "backend-test8.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test8 (US)",
+        "domain": "backend-test8-use1.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test9 (EU)",
+        "domain": "backend-test9.apptoogoodtogo.com",
+        "production": false
+      },
+      {
+        "name": "Test9 (US)",
+        "domain": "backend-test9-use1.apptoogoodtogo.com",
+        "production": false
+      }
+    ]
+  }
