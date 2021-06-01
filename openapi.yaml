@@ -397,7 +397,7 @@ components:
       properties:
         user_id:
           type: string
-          example: "761796"
+          example: "123456"
         name:
           type: string
           example: "John Doe"
