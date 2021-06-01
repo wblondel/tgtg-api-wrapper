@@ -105,7 +105,6 @@ tags:
 
 
 paths:
-  # no need to be logged
   /app/v1/app_settings:
     post:
       tags:
@@ -127,12 +126,13 @@ paths:
         '400':
           description: Bad request. The Accept-Language header is required.
 
-  # need to be logged
   /app/v1/user_settings:
     post:
       tags:
         - app
       summary: Get User settings
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -143,7 +143,6 @@ paths:
         '400':
           description: Bad request. The Accept-Language header is required.
   
-  # no need to be logged
   /auth/v2/loginByEmail:
     post:
       tags:
@@ -174,10 +173,10 @@ paths:
 
 components:
   # Authentication
-  #securitySchemes:
-  #  bearerAuth:
-  #    type: http
-  #    scheme: bearer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
  
   # Describing Requests
   requestBodies:
@@ -583,6 +582,3 @@ components:
         - refresh_token
         - startup_data
           
-      
-#security:
-#  - bearerAuth: []
