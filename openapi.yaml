@@ -171,13 +171,87 @@ paths:
               schema:
                 $ref: '#/components/schemas/Errors'
 
+  /auth/v2/token/refresh:
+    post:
+      tags:
+        - auth
+      summary: Refresh the access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+                  description: "Refresh token"
+              required:
+                - refresh_token
+      
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshTokenResult'
+                
+        '400':
+          description: VALIDATION_ERROR - refresh_token must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        
+        '401':
+          description: UNAUTHORIZED - Invalid token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+  
+  /auth/v2/logout:
+    post:
+      tags:
+        - auth
+      summary: Logs out (destroys the tokens)
+      security:
+        - bearerAuth: []
+      
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Errors'
+                  - $ref: '#/components/schemas/Error'
+
+  /map/v1/listAllBusinessLocationPicker:
+    post:
+      tags:
+        - map
+      summary: List all business location picker
+      
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/StoreLocationListResult'
+
 components:
   # Authentication
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
- 
+
   # Describing Requests
   requestBodies:
     LoginByEmailRequest:
@@ -206,7 +280,7 @@ components:
               - device_type
               - email
               - password
-    
+
  # Describing Responses
   schemas:
     Errors:
@@ -227,7 +301,67 @@ components:
               - code
       required:
         - errors
-  
+
+    Error:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          example: 1622583457179
+        status:
+          type: integer
+          example: 401
+        error:
+          type: string
+          example: "Unauthorized"
+        message:
+          type: string
+        path:
+          type: string
+          example: "/api/auth/v2/logout"
+      required:
+        - timestamp
+        - status
+        - error
+        - message
+        - path
+
+    StoreLocationListResult:
+      type: object
+      properties:
+        info:
+          type: array
+          items:
+            type: object
+            properties:
+              latitude:
+                type: string
+                example: "23.45678912"
+              longitude:
+                type: string
+                example: "5.67890123"
+        msg:
+          type: string
+          example: "OK"
+        status_code:
+          type: string
+          example: "1"
+      required:
+        - info
+        - msg
+        - status_code
+
+    RefreshTokenResult:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+      required:
+        - access_token
+        - refresh_token
+
     AppSettings:
       type: object
       properties:
@@ -281,7 +415,7 @@ components:
         - purchase_rating_start
         - purchase_rating_end
         - purchase_rating_delay
-  
+
     UserSettings:
       type: object
       properties:
@@ -393,7 +527,7 @@ components:
           type: boolean
         can_show_best_before_explainer:
           type: boolean
-    
+
     UserData:
       type: object
       properties:
@@ -427,7 +561,7 @@ components:
           type: boolean
         push_notifications_opt_in:
           type: boolean
-    
+
     Order:
       type: object
       properties:
@@ -508,7 +642,7 @@ components:
           type: boolean
         hasCollectionStateChanged:
           type: boolean
-    
+
     ListOrders:
       type: object
       properties:
@@ -526,7 +660,7 @@ components:
         - current_time
         - has_more
         - orders
-    
+
     Voucher:
       type: object
       properties:
@@ -542,7 +676,7 @@ components:
         - id
         - name
         - state
-        
+
     ListUserVoucher:
       type: object
       properties:
@@ -550,8 +684,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Voucher'
-      
-      
+
     StartupResponse:
       type: object
       properties:
@@ -565,7 +698,7 @@ components:
           $ref: '#/components/schemas/ListOrders'
         vouchers:
           $ref: '#/components/schemas/ListUserVoucher'
-        
+
     LoginResponse:
       type: object
       properties:
@@ -581,4 +714,3 @@ components:
         - access_token
         - refresh_token
         - startup_data
-          
