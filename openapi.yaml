@@ -372,10 +372,13 @@ components:
               example: 'https://store.toogoodtogo.com/web/resource/v2/sharing/mealsSaved/mobile/4/fr_FR/b4f64a9e4482f4e7ef449c66e51adc98'
             meals_saved_last_month:
               type: integer
+              example: 915314
             month:
               type: integer
+              example: 4
             year:
               type: integer
+              example: 2021
         bank_transaction_fee:
           type: string
         my_store_url:
