@@ -105,11 +105,12 @@ tags:
 
 
 paths:
+  # no need to be logged
   /app/v1/app_settings:
     post:
       tags:
         - app
-      summary: TODO
+      summary: Get App settings
       parameters:
         - in: header
           name: Accept-Language
@@ -126,6 +127,51 @@ paths:
         '400':
           description: Bad request. The Accept-Language header is required.
 
+  # need to be logged
+  /app/v1/user_settings:
+    post:
+      tags:
+        - app
+      summary: Get User settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettings'
+        '400':
+          description: Bad request. The Accept-Language header is required.
+  
+  # no need to be logged
+  /auth/v2/loginByEmail:
+    post:
+      tags:
+        - auth
+      summary: Logs in a user by email.
+      requestBody:
+        $ref: '#/components/requestBodies/LoginByEmailRequest'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: VALIDATION_ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: FAILED_LOGIN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+
 components:
   # Authentication
   #securitySchemes:
@@ -133,8 +179,56 @@ components:
   #    type: http
   #    scheme: bearer
  
+  # Describing Requests
+  requestBodies:
+    LoginByEmailRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              device_type:
+                type: string
+                description: "Device type"
+                enum:  [UNKNOWN, IOS, ANDROID]
+              email:
+                type: string
+                description: "User's email"
+              password:
+                type: string
+                format: password
+                description: "User's password"
+            example:
+              device_type: "ANDROID"
+              email: "john.doe@dev.local"
+              password: "p@ssw0rd"
+            required:
+              - device_type
+              - email
+              - password
+    
  # Describing Responses
   schemas:
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error type
+              message:
+                type: string
+                description: Error message
+            required:
+              - code
+      required:
+        - errors
+  
     AppSettings:
       type: object
       properties:
@@ -188,7 +282,304 @@ components:
         - purchase_rating_start
         - purchase_rating_end
         - purchase_rating_delay
-          
+  
+    UserSettings:
+      type: object
+      properties:
+        country_iso_code:
+          type: string
+          minLength: 2
+          maxLength: 2
+          example: 'FR'
+        phone_country_code_suggestion:
+          type: string
+          example: '33'
+        is_user_email_verified:
+          type: boolean
+        terms_url:
+          type: string
+          format: uri
+          example: 'https://toogoodtogo.fr/fr/terms-and-conditions'
+        privacy_url:
+          type: string
+          format: uri
+          example: 'https://toogoodtogo.fr/fr/privacy-policy'
+        contact_form_url:
+          type: string
+          format: uri
+          example: 'https://toogoodtogo.fr/fr/support/consumer'
+        blog_url:
+          type: string
+          format: uri
+          example: 'https://toogoodtogo.fr/fr/blog'
+        careers_url:
+          type: string
+          format: uri
+          example: 'https://toogoodtogo.org/en/careers'
+        education_url:
+          type: string
+          format: uri
+          example: 'https://toogoodtogo.fr/fr/movement/education'
+        instagram_url:
+          type: string
+          format: uri
+          example: 'https://www.instagram.com/toogoodtogo.fr'
+        store_signup_url:
+          type: string
+          format: uri
+          example: 'https://toogoodtogo.fr/fr/business?webview=1&utm_medium=App&utm_source=App&utm_campaign='
+        store_contact_url:
+          type: string
+          format: uri
+          example: 'https://toogoodtogo.fr/fr/support/store'
+        bound_sw:
+          type: object
+          properties:
+            longitude:
+              type: number
+              format: float
+              example: -1.2345678
+            latitude:
+              type: number
+              format: float
+              example: 23.45678912
+        bound_ne:
+          type: object
+          properties:
+            longitude:
+              type: number
+              format: float
+              example: 5.67890123
+            latitude:
+              type: number
+              format: float
+              example: 45.678901
+        meals_saved:
+          type: object
+          properties:
+            country_iso_code:
+              type: string
+              minLength: 2
+              maxLength: 2
+              example: 'FR'
+            share_url:
+              type: string
+              format: uri
+              example: 'https://share.toogoodtogo.com/mealssaved/b4f64a9e4482f4e7ef449c66e51adc98?locale=fr_FR'
+            image_url:
+              type: string
+              format: uri
+              example: 'https://store.toogoodtogo.com/web/resource/v2/sharing/mealsSaved/mobile/4/fr_FR/b4f64a9e4482f4e7ef449c66e51adc98'
+            meals_saved_last_month:
+              type: integer
+            month:
+              type: integer
+            year:
+              type: integer
+        bank_transaction_fee:
+          type: string
+        my_store_url:
+          type: string
+        order_id:
+          type: string
+        unrated_order_id:
+          type: string
+        panic_message:
+          type: string
 
+        has_any_vouchers:
+          type: boolean
+        can_show_best_before_explainer:
+          type: boolean
+    
+    UserData:
+      type: object
+      properties:
+        user_id:
+          type: string
+          example: "761796"
+        name:
+          type: string
+          example: "John Doe"
+        country_id:
+          type: string
+          minLength: 2
+          maxLength: 2
+          example: 'FR'
+        email:
+          type: string
+          format: email
+          example: 'john.doe@dev.local'
+        phone_country_code:
+          type: string
+          example: '33'
+        phone_number:
+          type: string
+          example: '612345678'
+        role: # Not used in the mobile app
+          type: string
+          enum: [CONSUMER]
+        is_partner:
+          type: boolean
+        newsletter_opt_in:
+          type: boolean
+        push_notifications_opt_in:
+          type: boolean
+    
+    Order:
+      type: object
+      properties:
+        cancel_until:
+          type: string
+        confirmation_email_sent_to:
+          type: string
+        food_handling_instructions:
+          type: string
+        buffet_instructions:
+          type: string
+        can_user_supply_packaging:
+          type: boolean
+        packaging_option:
+          type: string
+        is_rated:
+          type: boolean
+        item_collection_info:
+          type: string
+        item_cover_image:
+          type: string
+        item_id:
+          type: integer
+        item_logo:
+          type: string
+        item_name:
+          type: string
+        pickup_interval:
+          type: object
+          properties:
+            start:
+              type: string
+            end:
+              type: string
+        pickup_location:
+          type: string
+        price:
+          type: string
+        price_excluding_taxes:
+          type: string
+        price_including_taxes:
+          type: string
+        sales_taxes:
+          type: string
+        total_applied_taxes:
+          type: string
+        quantity:
+          type: integer
+        overall_rating:
+          type: string
+        order_id:
+          type: integer
+        redeem_interval:
+          type: string
+        order_state:
+          type: string
+          enum: [ACTIVE, REDEEMED, REFUNDED_OR_CANCELLED, UNREDEEMED, NOT_COLLECTED]
+        store_branch:
+          type: string
+        store_id:
+          type: integer
+        store_logo:
+          type: string
+        store_name:
+          type: string
+        time_of_purchase:
+          type: string
+          format: date-time
+        would_buy_again:
+          type: boolean
+        is_buffet:
+          type: boolean
+        can_show_best_before_explainer:
+          type: boolean
+        needsSync:
+          type: boolean
+        hasCollectionTimeChanged:
+          type: boolean
+        hasCollectionStateChanged:
+          type: boolean
+    
+    ListOrders:
+      type: object
+      properties:
+        current_time:
+          type: string
+          format: date-time
+          example: "2021-06-01T00:24:58.768422Z"
+        has_more:
+          type: boolean
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+      required:
+        - current_time
+        - has_more
+        - orders
+    
+    Voucher:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '1234'
+        name:
+          type: string
+        state:
+          type: string
+          enum: [PENDING, ACTIVE, USED, EXPIRED]
+      required:
+        - id
+        - name
+        - state
+        
+    ListUserVoucher:
+      type: object
+      properties:
+        vouchers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voucher'
+      
+      
+    StartupResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserData'
+        app_settings:
+          $ref: '#/components/schemas/AppSettings'
+        user_settings:
+          $ref: '#/components/schemas/UserSettings'
+        orders:
+          $ref: '#/components/schemas/ListOrders'
+        vouchers:
+          $ref: '#/components/schemas/ListUserVoucher'
+        
+    LoginResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        startup_data:
+          $ref: '#/components/schemas/StartupResponse'
+        user_count:
+          type: string
+      required:
+        - access_token
+        - refresh_token
+        - startup_data
+          
+      
 #security:
 #  - bearerAuth: []
