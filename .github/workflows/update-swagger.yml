@@ -31,7 +31,7 @@ jobs:
           tar -C docs -xzf $RELEASE_TAG --strip-components=1 $(tar -tzf $RELEASE_TAG | head -1 | cut -f1 -d"/")/dist
           rm $RELEASE_TAG
           # Move index.html to the root
-          mv docs/dist/index.html docs/dist
+          mv docs/dist/index.html docs
           # Fix references in index.html
           sed -i "s|https://petstore.swagger.io/v2/swagger.json|$SWAGGER_YAML|g" docs/index.html
           sed -i "s|href=\"./|href=\"./dist/|g" docs/index.html
