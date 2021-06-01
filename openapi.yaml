@@ -5,11 +5,11 @@ info:
   version: 0.0.1
 
 servers:
-  - url: https://apptoogoodtogo.com/api/
+  - url: https://apptoogoodtogo.com/api
     description: Production (Nearest)
-  - url: https://euw1.apptoogoodtogo.com/api/
+  - url: https://euw1.apptoogoodtogo.com/api
     description: Production (EU)
-  - url: https://use1.apptoogoodtogo.com/api/
+  - url: https://use1.apptoogoodtogo.com/api
     description: Production (US)
     
   - url: https://backend-staging.apptoogoodtogo.com/api
