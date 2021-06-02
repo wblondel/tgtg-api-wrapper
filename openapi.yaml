@@ -11,24 +11,24 @@ servers:
     description: Production (EU)
   - url: https://use1.apptoogoodtogo.com/api
     description: Production (US)
-    
+
   - url: https://backend-staging.apptoogoodtogo.com/api
     description: Staging (Nearest)
   - url: https://backend-staging-euw1.apptoogoodtogo.com/api
     description: Staging (EU)
   - url: https://backend-staging-use1.apptoogoodtogo.com/api
     description: Staging (US)
-    
+
   - url: https://gold-backend-internal.dev-euw1.tgtg.ninja/api
     description: Gold (EU) (Requires VPN)
   - url: https://gold-backend-internal.dev-use1.tgtg.ninja/api
     description: Gold (US) (Requires VPN)
-    
+
   - url: https://backend-test1.apptoogoodtogo.com/api
     description: Test1 (EU)
   - url: https://backend-test1-use1.apptoogoodtogo.com/api
     description: Test1 (US)
-    
+
   - url: https://backend-test2.apptoogoodtogo.com/api
     description: Test2 (EU)
   - url: https://backend-test2-use1.apptoogoodtogo.com/api
@@ -38,39 +38,37 @@ servers:
     description: Test3 (EU)
   - url: https://backend-test3-use1.apptoogoodtogo.com/api
     description: Test3 (US)
-    
+
   - url: https://backend-test4.apptoogoodtogo.com/api
     description: Test4 (EU)
   - url: https://backend-test4-use1.apptoogoodtogo.com/api
     description: Test4 (US)
-    
+
   - url: https://backend-test5.apptoogoodtogo.com/api
     description: Test5 (EU)    
   - url: https://backend-test5-use1.apptoogoodtogo.com/api
     description: Test5 (US)
-    
+
   - url: https://backend-test6.apptoogoodtogo.com/api
     description: Test6 (EU)
   - url: https://backend-test6-use1.apptoogoodtogo.com/api
     description: Test6 (US)
-    
+
   - url: https://backend-test7.apptoogoodtogo.com/api
     description: Test7 (EU)
   - url: https://backend-test7-use1.apptoogoodtogo.com/api
     description: Test7 (US)
-    
+
   - url: https://backend-test8.apptoogoodtogo.com/api
     description: Test8 (EU)
   - url: https://backend-test8-use1.apptoogoodtogo.com/api
     description: Test8 (US)
-    
+
   - url: https://backend-test9.apptoogoodtogo.com/api
     description: Test9 (EU)
   - url: https://backend-test9-use1.apptoogoodtogo.com/api
     description: Test9 (US)
-    
-    
-    
+
 tags:
   - name: "app"
     description: ""
@@ -103,19 +101,20 @@ tags:
   - name: "voucher"
     description: ""
 
-
 paths:
   /app/v1/app_settings:
     post:
       tags:
         - app
       summary: Get App settings
+
       parameters:
         - in: header
           name: Accept-Language
           schema:
             type: string
           required: true
+
       responses:
         '200':
           description: OK
@@ -133,6 +132,7 @@ paths:
       summary: Get User settings
       security:
         - bearerAuth: []
+
       responses:
         '200':
           description: OK
@@ -148,6 +148,7 @@ paths:
       tags:
         - auth
       summary: Logs in a user by email.
+
       requestBody:
         $ref: '#/components/requestBodies/LoginByEmailRequest'
 
@@ -176,6 +177,7 @@ paths:
       tags:
         - auth
       summary: Refresh the access token
+
       requestBody:
         required: true
         content:
@@ -188,7 +190,7 @@ paths:
                   description: "Refresh token"
               required:
                 - refresh_token
-      
+
       responses:
         '200':
           description: OK
@@ -196,14 +198,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RefreshTokenResult'
-                
         '400':
           description: VALIDATION_ERROR - refresh_token must not be blank
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Errors'
-        
         '401':
           description: UNAUTHORIZED - Invalid token
           content:
@@ -218,7 +218,7 @@ paths:
       summary: Logs out (destroys the tokens)
       security:
         - bearerAuth: []
-      
+
       responses:
         '200':
           description: OK
@@ -236,7 +236,7 @@ paths:
       tags:
         - map
       summary: List all business location picker
-      
+
       responses:
         '200':
           description: OK
@@ -252,7 +252,7 @@ paths:
       summary: Get current user data
       security:
         - bearerAuth: []
-      
+
       responses:
         '200':
           description: OK
