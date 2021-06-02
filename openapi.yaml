@@ -268,7 +268,44 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/Errors'
                   - $ref: '#/components/schemas/Error'
-                
+
+  /user/v1/update:
+    post:
+      tags:
+        - user
+      summary: Update current user data
+      security:
+        - bearerAuth: []
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserData' # user_id is required but not checked
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+        '400':
+          description: VALIDATION_ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '401':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Errors'
+                  - $ref: '#/components/schemas/Error'
+
 components:
   # Authentication
   securitySchemes:
@@ -585,6 +622,13 @@ components:
           type: boolean
         push_notifications_opt_in:
           type: boolean
+      required:
+        - user_id
+        - name
+        - phone_country_code
+        - phone_number
+        - newsletter_opt_in
+        - push_notifications_opt_in
 
     Order:
       type: object
