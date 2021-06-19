@@ -192,6 +192,48 @@ paths:
                   - $ref: '#/components/schemas/Errors'
                   - $ref: '#/components/schemas/Error'
 
+  /hiddenstore/v2/unlock:
+    post:
+      tags:
+        - hiddenstore
+      summary: Unlock a hidden store
+      security:
+        - bearerAuth: []
+
+      requestBody:
+        $ref: '#/components/requestBodies/UnlockHiddenStoreRequest'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnlockHiddenStoreResponse'
+        '400':
+          description: VALIDATION_ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '401':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Errors'
+                  - $ref: '#/components/schemas/Error'
+        '403':
+          description: FORBIDDEN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        # happens if the given user_id doesn't match with the given bearer token
+        # UNAUTHORIZED
+        # Access is denied
+  
   /auth/v2/token/refresh:
     post:
       tags:
@@ -348,9 +390,10 @@ paths:
       tags:
         - user
       summary: Reset password
-      
+
       requestBody:
         $ref: '#/components/requestBodies/ResetPasswordRequest'
+
       responses:
         '200':
           description: 'OK'
@@ -360,6 +403,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Errors'
+
+  /user/v1/resendWelcomeEmail:
+    post:
+      tags:
+        - user
+      summary: Resend the Welcome email
+      security:
+        - bearerAuth: []
+
+      requestBody:
+        $ref: '#/components/requestBodies/ResendWelcomeEmailRequest'
+
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: VALIDATION_ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '401':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Errors'
+                  - $ref: '#/components/schemas/Error'
+        '403':
+          description: FORBIDDEN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        # happens if the given user_id doesn't match with the given bearer token
+        # UNAUTHORIZED
+        # Access is denied
 
 components:
   # Authentication
@@ -431,6 +512,35 @@ components:
                 example: john.doe@dev.local
             required:
               - email
+
+    ResendWelcomeEmailRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                example: "123456"
+            required:
+                - user_id
+
+    UnlockHiddenStoreRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              unlock_code:
+                type: string
+              user_id:
+                type: string
+                example: "123456"
+            required:
+              - unlock_code
+              - user_id
 
  # Describing Responses
   schemas:
@@ -872,3 +982,12 @@ components:
         - access_token
         - refresh_token
         - startup_data
+
+    UnlockHiddenStoreResponse:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:  [OK, CODE_INVALID, ALREADY_UNLOCKED]
+      required:
+        - state
