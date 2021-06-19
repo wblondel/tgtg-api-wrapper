@@ -172,6 +172,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/Errors'
 
+  /auth/v2/logout:
+    post:
+      tags:
+        - auth
+      summary: Logs out (destroys the tokens)
+      security:
+        - bearerAuth: []
+
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Errors'
+                  - $ref: '#/components/schemas/Error'
+
   /auth/v2/token/refresh:
     post:
       tags:
@@ -210,26 +230,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Errors'
-  
-  /auth/v2/logout:
-    post:
-      tags:
-        - auth
-      summary: Logs out (destroys the tokens)
-      security:
-        - bearerAuth: []
-
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: UNAUTHORIZED
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - $ref: '#/components/schemas/Errors'
-                  - $ref: '#/components/schemas/Error'
 
   /map/v1/listAllBusinessLocationPicker:
     post:
