@@ -306,6 +306,62 @@ paths:
                   - $ref: '#/components/schemas/Errors'
                   - $ref: '#/components/schemas/Error'
 
+  /user/v1/changePassword:
+    post:
+      tags:
+        - user
+      summary: Change password
+      security:
+        - bearerAuth: []
+
+      requestBody:
+        $ref: '#/components/schemas/ChangePasswordRequest'
+
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: VALIDATION_ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '401':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Errors'
+                  - $ref: '#/components/schemas/Error'
+        '403':
+          description: PASSWORD_INCORRECT
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+          # PASSWORD_INCORRECT
+          # WrongPasswordException
+
+  /user/v1/resetPassword:
+    post:
+      tags:
+        - user
+      summary: Reset password
+      
+      requestBody:
+        $ref: '#/components/schemas/ResetPasswordRequest'
+      
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: VALIDATION_ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+
 components:
   # Authentication
   securitySchemes:
@@ -341,6 +397,41 @@ components:
               - device_type
               - email
               - password
+
+    ChangePasswordRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              old_password:
+                type: string
+                description: "Old password"
+              new_password:
+                type: string
+                description: "New password"
+              refresh_token:
+                type: string
+                description: "Refresh token"
+            required:
+              - old_password
+              - new_password
+              - refresh_token
+
+    ResetPasswordRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+                example: john.doe@dev.local
+            required:
+              - email
 
  # Describing Responses
   schemas:
