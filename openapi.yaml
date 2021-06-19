@@ -315,7 +315,7 @@ paths:
         - bearerAuth: []
 
       requestBody:
-        $ref: '#/components/schemas/ChangePasswordRequest'
+        $ref: '#/components/requestBodies/ChangePasswordRequest'
 
       responses:
         '200':
@@ -350,8 +350,7 @@ paths:
       summary: Reset password
       
       requestBody:
-        $ref: '#/components/schemas/ResetPasswordRequest'
-      
+        $ref: '#/components/requestBodies/ResetPasswordRequest'
       responses:
         '200':
           description: 'OK'
