@@ -1,210 +1,345 @@
-package p144e.p145a.p146a.p230h.p232f;
+package td;
 
-
-public interface a {
+public interface InterfaceC10693a {
 
     /* app */
-    @POST("api/app/v1/app_settings")
-    Object m8080w(Continuation<? super AppSettings> dVar);
+    @InterfaceC11753k({"withoutAuthorization: true"})
+    @InterfaceC11757o("api/app/v1/app_settings")
+    Object m2721g(@NotNull InterfaceC11458a<? super C10137m<AppSettings>> interfaceC11458a);
 
-    @POST("api/app/v1/savePushToken")
-    Object m8109Y(@Body PushToken pushToken, Continuation<? super C7735b0<AbstractC7625i0>> dVar);
+    @InterfaceC11757o("api/app/v1/myStoreOnboardingSettings")
+    Object m2691v(@NotNull InterfaceC11458a<? super C10137m<MyStoreOnboardingSettingsResponse>> interfaceC11458a);
 
-    @POST("api/app/v1/user_settings")
-    Object m8105b(Continuation<? super UserSettings> dVar);
+    @InterfaceC11757o("api/app/v1/onStartup")
+    Object m2714j0(@NotNull InterfaceC11458a<? super C10137m<StartupResponse>> interfaceC11458a);
 
-    @POST("api/app/v1/user_settings")
-    Object m8104b0(Continuation<? super UserSettings> dVar);
+    @InterfaceC11757o("api/app/v1/savePushToken")
+    Object m2749P(@InterfaceC11743a @NotNull PushToken pushToken, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11757o("api/app/v1/user_settings")
+    Object m2758K0(@NotNull InterfaceC11458a<? super C10137m<UserSettings>> interfaceC11458a);
 
 
     /* auth */
-    @POST("api/auth/v2/loginByEmail")
-    Object m8092k(@Body LoginByEmailRequest loginByEmailRequest, Continuation<? super LoginResponse> dVar);
+    @InterfaceC11757o("api/auth/v4/authByRequestPollingId")
+    Object m2738V(@InterfaceC11743a @NotNull AuthByRequestPollingIdRequest authByRequestPollingIdRequest, @NotNull InterfaceC11458a<? super C10137m<LoginResponse>> interfaceC11458a);
 
-    @POST("api/auth/v2/loginByThirdParty")
-    Object m8123K(@Body LoginByThirdPartyRequest loginByThirdPartyRequest, Continuation<? super LoginResponse> dVar);
-    
-    @POST("api/auth/v2/logout")
-    Object m8110X(Continuation<? super Unit> dVar)
-    
-    @POST("api/auth/v2/signUpByEmail")
-    Object m8091l(@Body SignUpByEmailRequest signUpByEmailRequest, Continuation<? super LoginResponse> dVar);
+    @InterfaceC11757o("api/auth/v4/authByRequestToken")
+    Object m2734Z(@InterfaceC11743a @NotNull AuthByRequestTokenRequest authByRequestTokenRequest, @NotNull InterfaceC11458a<? super C10137m<LoginResponse>> interfaceC11458a);
 
-    @POST("api/auth/v2/signUpByThirdParty")
-    Object m8101d(@Body SignUpByThirdPartyRequest signUpByThirdPartyRequest, Continuation<? super LoginResponse> dVar);
+    @InterfaceC11757o("api/auth/v4/loginByDirectWebToAppLoginToken")
+    Object m2690v0(@InterfaceC11743a @NotNull DirectWebToAppLoginRequest directWebToAppLoginRequest, @NotNull InterfaceC11458a<? super C10137m<LoginResponse>> interfaceC11458a);
 
-    @POST("api/auth/v2/token/refresh")
-    Object m8108Z(@Body RefreshToken refreshToken, Continuation<? super C7735b0<RefreshTokenResult>> dVar);
+    @InterfaceC11757o("api/auth/v4/authByRequestPin")
+    Object m2697s(@InterfaceC11743a @NotNull AuthByRequestPinRequest authByRequestPinRequest, @NotNull InterfaceC11458a<? super C10137m<LoginResponse>> interfaceC11458a);
 
-    @POST("api/auth/v2/token/refresh")
-    Maybe<C7735b0<RefreshTokenResult>> m8082u(@Body RefreshToken refreshToken);
+    @InterfaceC11757o("api/auth/v4/signUpByEmail")
+    Object m2695t(@InterfaceC11743a @NotNull SignUpByEmailRequest signUpByEmailRequest, @NotNull InterfaceC11458a<? super C10137m<EmailSignupResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/auth/v4/authByEmail")
+    Object m2710l0(@InterfaceC11743a @NotNull EmailAuthenticateRequest emailAuthenticateRequest, @NotNull InterfaceC11458a<? super C10137m<EmailAuthenticateResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/auth/v4/signUpByThirdParty")
+    Object m2713k(@InterfaceC11743a @NotNull SignUpByThirdPartyRequest signUpByThirdPartyRequest, @NotNull InterfaceC11458a<? super C10137m<LoginResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/auth/v4/loginByThirdParty")
+    Object m2712k0(@InterfaceC11743a @NotNull LoginByThirdPartyRequest loginByThirdPartyRequest, @NotNull InterfaceC11458a<? super C10137m<LoginResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/auth/v4/logout")
+    Object m2723f(@NotNull InterfaceC11458a<? super Unit> interfaceC11458a);
 
 
-    /* basket */
-    @POST("api/basket/v2/{basketId}/cancelOrComplete")
-    Maybe<C7735b0<BasketCompleteResponse>> m8129E(@Path(encoded = true, value = "basketId") String str);
+    /* discover */
+    @InterfaceC11757o("api/discover/v1/")
+    Object m2751O(@InterfaceC11743a @NotNull DiscoverAllBucketsRequest discoverAllBucketsRequest, @InterfaceC11751i("X-TimezoneOffset") String str, @InterfaceC11751i("X-24HourFormat") String str2, @NotNull InterfaceC11458a<? super C10137m<DiscoverAllBucketsResponse>> interfaceC11458a);
 
-    @POST("api/basket/v2/{basketId}/complete")
-    Maybe<BasketCompleteResponse> m8126H(@Path(encoded = true, value = "basketId") String str, @Body BasketComplete basketComplete);
-
-    @POST("api/basket/v2/{basketId}/checkout")
-    Maybe<CheckoutResult> m8116R(@Path(encoded = true, value = "basketId") String str, @Body BasketCheckout basketCheckout);
-
-    @POST("api/basket/v2/{basketId}/cancel")
-    Object m8096g(@Path(encoded = true, value = "basketId") String str, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/discover/v1/bucket")
+    Object m2739U(@InterfaceC11743a @NotNull DiscoverSingleBucketRequest discoverSingleBucketRequest, @InterfaceC11751i("X-TimezoneOffset") String str, @InterfaceC11751i("X-24HourFormat") String str2, @NotNull InterfaceC11458a<? super C10137m<DiscoverSingleBucketResponse>> interfaceC11458a);
 
 
     /* gdpr */
-    @POST("api/gdpr/v1/{userId}/exportUserData")
-    Object m8112V(@Path(encoded = true, value = "userId") String str, @Body ExportUserRequest exportUserRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/gdpr/v1/{userId}/deleteUser")
+    Object m2779A(@InterfaceC11761s(encoded = true, value = "userId") String str, @InterfaceC11743a @NotNull DeleteUserRequest deleteUserRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
-    @POST("api/gdpr/v1/{userId}/deleteUser")
-    Object m8081v(@Path(encoded = true, value = "userId") String str, @Body DeleteUserRequest deleteUserRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/gdpr/v1/{userId}/exportUserData")
+    Object m2767G(@InterfaceC11761s(encoded = true, value = "userId") String str, @InterfaceC11743a @NotNull ExportUserRequest exportUserRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
 
     /* hiddenstore */
-    @POST("api/hiddenstore/v2/remove")
-    Object m8115S(@Body RemoveHiddenStoreRequest removeHiddenStoreRequest, Continuation<? super RemoveHiddenStoreResponse> dVar);
+    @InterfaceC11757o("api/hiddenstore/v2/remove")
+    Object m2756L0(@InterfaceC11743a @NotNull RemoveHiddenStoreRequest removeHiddenStoreRequest, @NotNull InterfaceC11458a<? super C10137m<RemoveHiddenStoreResponse>> interfaceC11458a);
 
-    @POST("api/hiddenstore/v2/unlock")
-    Maybe<UnlockHiddenStoreResponse> m8111W(@Body UnlockHiddenStoreRequest unlockHiddenStoreRequest);
+    @InterfaceC11757o("api/hiddenstore/v2/unlock")
+    Object m2693u(@InterfaceC11743a @NotNull UnlockHiddenStoreRequest unlockHiddenStoreRequest, @NotNull InterfaceC11458a<? super C10137m<UnlockHiddenStoreResponse>> interfaceC11458a);
+
+
+    /* impact */
+    @InterfaceC11757o("api/impact/v1/{USER_ID}/moneySaved")
+    Object m2764H0(@InterfaceC11761s(encoded = true, value = "USER_ID") String str, @NotNull InterfaceC11458a<? super C10137m<MoneySavedResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/impact/v1/{userId}/co2eSaved")
+    Object m2716i0(@InterfaceC11761s(encoded = true, value = "userId") String str, @NotNull InterfaceC11458a<? super C10137m<Co2eSavedResponse>> interfaceC11458a);
+
+
+    /* invitation */
+    @InterfaceC11757o("api/invitation/v1/{invitationId}/fulfill")
+    Object m2777B(@InterfaceC11761s(encoded = true, value = "invitationId") @NotNull String str, @InterfaceC11743a @NotNull FulfillmentRequest fulfillmentRequest, @NotNull InterfaceC11458a<? super C10137m<Invitation>> interfaceC11458a);
+
+    @InterfaceC11757o("api/invitation/v1/order/getOrder/{invitationId}")
+    Object m2776B0(@InterfaceC11761s(encoded = true, value = "invitationId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<OrderResult>> interfaceC11458a);
+
+    @InterfaceC11757o("api/invitation/v1/order/{orderId}")
+    Object m2774C0(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<Invitation>> interfaceC11458a);
+
+    @InterfaceC11757o("api/invitation/v1/order/{orderId}/createOrEnable")
+    Object m2762I0(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<Invitation>> interfaceC11458a);
+
+    @InterfaceC11757o("api/invitation/v1/order/fromLink/{invitationExternalId}")
+    Object m2755M(@InterfaceC11761s(encoded = true, value = "invitationExternalId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<InvitationFromDeeplinkResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/invitation/v1/{invitationExternalId}/accept")
+    Object m2731b(@InterfaceC11761s(encoded = true, value = "invitationExternalId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<Invitation>> interfaceC11458a);
+
+    @InterfaceC11757o("api/invitation/v1/{invitationId}/regret")
+    Object m2728c0(@InterfaceC11761s(encoded = true, value = "invitationId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<Invitation>> interfaceC11458a);
+
+    @InterfaceC11757o("api/invitation/v1/{invitationId}/disable")
+    Object m2708m0(@InterfaceC11761s(encoded = true, value = "invitationId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<Invitation>> interfaceC11458a);
+
+    @InterfaceC11757o("api/invitation/v1/order/markNotCollected/{invitationId}")
+    Object m2705o(@InterfaceC11761s(encoded = true, value = "invitationId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
 
     /* item */
-    @POST("api/item/v7/discover")
-    Object m8122L(@Body DiscoverItemsRequest discoverItemsRequest, Continuation<? super DiscoverItemsResponse> dVar);
+    @InterfaceC11757o("api/item/v8/recommendations")
+    Object m2770E0(@InterfaceC11743a @NotNull RecommendationsListRequest recommendationsListRequest, @InterfaceC11751i("X-TimezoneOffset") String str, @InterfaceC11751i("X-24HourFormat") String str2, @NotNull InterfaceC11458a<? super C10137m<ListItemResponse>> interfaceC11458a);
 
-    @POST("api/item/v7/{itemId}/setFavorite")
-    Object m8102c0(@Path(encoded = true, value = "itemId") String str, @Body SetFavoriteRequest setFavoriteRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/item/v8/{itemId}")
+    Object m2759K(@InterfaceC11761s(encoded = true, value = "itemId") String str, @InterfaceC11743a @NotNull ItemRequest itemRequest, @InterfaceC11751i("X-TimezoneOffset") String str2, @InterfaceC11751i("X-24HourFormat") String str3, @NotNull InterfaceC11458a<? super C10137m<? extends BasicItem>> interfaceC11458a);
 
-    @POST("api/item/v7/{itemId}/getPriceCalculations")
-    Object m8100d0(@Path(encoded = true, value = "itemId") String str, @Body GetPriceCalculationsRequest getPriceCalculationsRequest, Continuation<? super C7735b0<List<PriceCalculation>>> dVar);
+    @InterfaceC11757o("api/item/v8/count/")
+    Object m2733a(@InterfaceC11743a @NotNull ListItemRequest listItemRequest, @NotNull InterfaceC11458a<? super C10137m<Integer>> interfaceC11458a);
 
-    @POST("api/item/v7/{itemId}")
-    Object m8093j(@Path(encoded = true, value = "itemId") String str, @Body ItemRequest itemRequest, Continuation<? super Item> dVar);
+    @InterfaceC11757o("api/item/v8/")
+    Object m2706n0(@InterfaceC11743a @NotNull ListItemRequest listItemRequest, @InterfaceC11751i("X-TimezoneOffset") String str, @InterfaceC11751i("X-24HourFormat") String str2, @NotNull InterfaceC11458a<? super C10137m<ListItemResponse>> interfaceC11458a);
 
-    @POST("api/item/v7/")
-    Object m8090m(@Body ListItemRequest listItemRequest, Continuation<? super ListItemResponse> dVar);
-    
-    @POST("api/item/v7/{itemId}/basket")
-    Object m8085r(@Path(encoded = true, value = "itemId") String str, @Body ItemBasketRequest itemBasketRequest, Continuation<? super Basket> dVar);
+    @InterfaceC11757o("api/item/v8/{itemId}/getPriceSpecifications")
+    Object m2684y0(@InterfaceC11761s(encoded = true, value = "itemId") String str, @InterfaceC11743a @NotNull PriceSpecificationsRequest priceSpecificationsRequest, @NotNull InterfaceC11458a<? super C10137m<PriceSpecifications>> interfaceC11458a);
 
 
     /* location */
-    @POST("api/location/v1/search")
-    Maybe<SearchLocationResponse> m8133A(@Body LocationRequest locationRequest);
+    @InterfaceC11757o("api/location/v1/lookup")
+    Object m2771E(@InterfaceC11743a @NotNull GeoLocation geoLocation, @NotNull InterfaceC11458a<? super C10137m<ReverseLookupResponse>> interfaceC11458a);
 
-    @POST("api/location/v1/lookup")
-    Maybe<ReverseLookupResponse> m8084s(@Body GeoLocation geoLocation);
+    @InterfaceC11757o("api/location/v1/search")
+    Object m2752N0(@InterfaceC11743a @NotNull LocationRequest locationRequest, @NotNull InterfaceC11458a<? super C10137m<SearchLocationResponse>> interfaceC11458a);
+
+
+    /* manufactureritem */
+    @InterfaceC11757o("api/manufactureritem/v1/")
+    Object m2727d(@InterfaceC11743a @NotNull ManufacturerItemsRequest manufacturerItemsRequest, @NotNull InterfaceC11458a<? super C10137m<ManufacturerItemsResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/manufactureritem/v2/updateUserTooltipSeenTime")
+    Object m2711l(@NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11757o("api/manufactureritem/v2/")
+    Object m2698r0(@InterfaceC11743a @NotNull ManufacturerItemsV2Request manufacturerItemsV2Request, @NotNull InterfaceC11458a<? super C10137m<ManufacturerItemsV2Response>> interfaceC11458a);
 
 
     /* map */
-    @POST("api/map/v1/listAllBusinessLocationPicker")
-    Object m8118P(Continuation<? super StoreLocationListResult> dVar);
+    @InterfaceC11757o("api/map/v1/listAllBusinessLocationPicker")
+    Object m2766G0(@NotNull InterfaceC11458a<? super C10137m<StoreLocationListResult>> interfaceC11458a);
 
 
     /* order */
-    @POST("api/order/v3/{orderId}/redeem")
-    Object m8103c(@Path(encoded = true, value = "orderId") String str, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/order/v7/{orderId}/charityPickupDocumentUrl")
+    Object m2775C(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<CharityPickupDocumentResponse>> interfaceC11458a);
 
-    @POST("api/order/v3/{orderId}/cancel")
-    Object m8114T(@Path(encoded = true, value = "orderId") String str, @Body CancelOrderRequest cancelOrderRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/order/v7/{orderId}/markNotCollected")
+    Object m2765H(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
-    @POST("api/order/v3/{orderId}/rate")
-    Object m8130D(@Path(encoded = true, value = "orderId") String str, @Body OrderRatingItem orderRatingItem, Continuation<? super C7735b0<AbstractC7625i0>> dVar);
+    @InterfaceC11757o("api/order/v7/")
+    Object m2760J0(@InterfaceC11743a @NotNull ListOrdersRequest listOrdersRequest, @NotNull InterfaceC11458a<? super C10137m<OrderListMonthlyResult>> interfaceC11458a);
 
-    @POST("api/order/v3/inactive")
-    Object m8127G(@Body ListOrdersRequest listOrdersRequest, Continuation<? super OrderListResult> dVar);
+    @InterfaceC11757o("api/order/v7/{orderId}/abort")
+    Object m2754M0(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @InterfaceC11743a @NotNull CancelOrderRequest cancelOrderRequest, @NotNull InterfaceC11458a<? super C10137m<AbortOrderResponse>> interfaceC11458a);
 
-    @POST("api/order/v3/{orderId}/wouldBuyAgain")
-    Object m8117Q(@Path(encoded = true, value = "orderId") String str, @Body WouldBuyAgainRequest wouldBuyAgainRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/order/v7/{orderId}/rate")
+    Object m2753N(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @InterfaceC11743a @NotNull OrderRatingItem orderRatingItem, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
-    @POST("api/order/v2/{receiptId}/sendOrderConfirmedEmail")
-    Object m8119O(@Path(encoded = true, value = "receiptId") String str, @Body OrderConfirmedEmailRequest orderConfirmedEmailRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/order/v7/{orderId}/cancel")
+    Object m2748P0(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @InterfaceC11743a @NotNull CancelOrderRequest cancelOrderRequest, @NotNull InterfaceC11458a<? super C10137m<CancelOrderResponse>> interfaceC11458a);
 
-    @POST("api/order/v3/active")
-    Object m8098e0(@Body ListActiveOrdersRequest listActiveOrdersRequest, Continuation<? super OrderListResult> dVar);
+    @InterfaceC11757o("api/order/v7/{orderId}/pay")
+    Object m2743S(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @InterfaceC11743a @NotNull CreatePaymentRequest createPaymentRequest, @NotNull InterfaceC11458a<? super C10137m<PaymentResponse>> interfaceC11458a);
 
-    @POST("api/order/v3/{orderId}/markNotCollected")
-    Object m8097f(@Path(encoded = true, value = "orderId") String str, Continuation<? super AbstractC7625i0> dVar);
-    
-    @POST("api/order/v3/{orderId}")
-    Object m8094i(@Path(encoded = true, value = "orderId") String str, Continuation<? super OrderResult> dVar);
+    @InterfaceC11757o("api/order/v7/active")
+    Object m2736X(@InterfaceC11743a @NotNull ListActiveOrdersRequest listActiveOrdersRequest, @NotNull InterfaceC11458a<? super C10137m<OrderListResult>> interfaceC11458a);
+
+    @InterfaceC11757o("api/order/v7/{orderId}/validateAndSetAddress")
+    Object m2730b0(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @InterfaceC11743a @NotNull UserAddress userAddress, @NotNull InterfaceC11458a<? super C10137m<UserAddressValidationResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/order/v7/{orderId}/status")
+    Object m2717i(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<OrderInfo>> interfaceC11458a);
+
+    @InterfaceC11757o("api/order/v7/{orderId}")
+    Object m2704o0(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<OrderResult>> interfaceC11458a);
+
+    @InterfaceC11757o("api/order/v7/{orderId}/wouldBuyAgain")
+    Object m2702p0(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @InterfaceC11743a @NotNull WouldBuyAgainRequest wouldBuyAgainRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11757o("api/order/v7/{orderId}/redeem")
+    Object m2696s0(@InterfaceC11761s(encoded = true, value = "orderId") @NotNull String str, @InterfaceC11743a @NotNull RedeemOrderRequest redeemOrderRequest, @NotNull InterfaceC11458a<? super C10137m<RedeemResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/order/v7/{receiptId}/sendOrderConfirmedEmail")
+    Object m2692u0(@InterfaceC11761s(encoded = true, value = "receiptId") String str, @InterfaceC11743a @NotNull OrderConfirmedEmailRequest orderConfirmedEmailRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11757o("api/order/v7/create/{itemId}")
+    Object m2715j(@InterfaceC11761s(encoded = true, value = "itemId") @NotNull String str, @InterfaceC11743a @NotNull CreateOrderRequest createOrderRequest, @NotNull InterfaceC11458a<? super C10137m<CreateOrderResponse>> interfaceC11458a);
 
 
     /* payment */
-    @POST("api/payment/v1/option/list")
-    Maybe<ListPaymentOptionsResponse> m8106a0(@Body ItemBasketRequest itemBasketRequest);
+    @InterfaceC11757o("api/payment/v3/{paymentId}/additionalAuthorization")
+    Object m2688w0(@InterfaceC11761s(encoded = true, value = "paymentId") @NotNull String str, @InterfaceC11743a @NotNull AdditionalAuthRequest additionalAuthRequest, @NotNull InterfaceC11458a<? super C10137m<PaymentResponse>> interfaceC11458a);
 
-    @POST("api/payment/v1/recurring/delete")
-    Maybe<AbstractC7625i0> m8088o(@Body DeleteRecurringPaymentOption deleteRecurringPaymentOption);
+    @InterfaceC11757o("api/payment/v3/{paymentId}")
+    Object m2687x(@InterfaceC11761s(encoded = true, value = "paymentId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<PaymentResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/payment/v3/{paymentId}/biometrics")
+    Object m2740T0(@InterfaceC11761s(encoded = true, value = "paymentId") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<BiometricsResponse>> interfaceC11458a);
+
+
+    /* paymentMethod */
+    @InterfaceC11757o("api/paymentMethod/v1/item/{itemId}")
+    Object m2768F0(@InterfaceC11761s(encoded = true, value = "itemId") String str, @InterfaceC11743a @NotNull PaymentMethodsRequest paymentMethodsRequest, @NotNull InterfaceC11458a<? super C10137m<PaymentMethodsResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/paymentMethod/v1/savedpaymentmethod/delete")
+    Object m2689w(@InterfaceC11743a @NotNull DeleteCardRequest deleteCardRequest, @NotNull InterfaceC11458a<? super C10137m<DeleteCardResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/paymentMethod/v1/")
+    Object m2718h0(@InterfaceC11743a @NotNull PaymentMethodsRequest paymentMethodsRequest, @NotNull InterfaceC11458a<? super C10137m<PaymentMethodsResponse>> interfaceC11458a);
 
 
     /* selfonboarding */
-    @POST("api/selfonboarding/v1/selfonboard")
-    Object m8121M(@Body SelfOnboardRequest selfOnboardRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/selfonboarding/v1/selfonboard")
+    Object m2745R(@InterfaceC11743a @NotNull SelfOnboardRequest selfOnboardRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
 
     /* store */
-    @POST("api/store/v4/{storeId}")
-    Object m8099e(@Path(encoded = true, value = "storeId") String str, @Body StoreRequest storeRequest, Continuation<? super StoreInformation> dVar);
+    @InterfaceC11757o("api/store/v4/{storeId}")
+    Object m2724e0(@InterfaceC11761s(encoded = true, value = "storeId") String str, @InterfaceC11743a @NotNull StoreRequest storeRequest, @NotNull InterfaceC11458a<? super C10137m<StoreInformation>> interfaceC11458a);
 
 
     /* support */
-    @POST("api/support/v1/consumer/")
-    Object m8132B(@Body ConsumerSupportRequest consumerSupportRequest, Continuation<? super ConsumerSupportResponse> dVar);
-    
-    @POST("api/support/v1/uploading/files")
-    @Multipart
-    Object m8078y(@Part List<MultipartBody.C7610c> list, Continuation<? super SupportPictureUploadResponse> dVar);
+    @InterfaceC11757o("api/support/v2/consumer/")
+    Object m2778A0(@InterfaceC11743a @NotNull ConsumerSupportRequest consumerSupportRequest, @NotNull InterfaceC11458a<? super C10137m<ConsumerSupportResponse>> interfaceC11458a);
 
-    @POST("api/support/v1/business/")
-    Object m8083t(@Body BusinessSupportRequest businessSupportRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/support/v2/consumer/refund/choice")
+    Object m2746Q0(@InterfaceC11743a @NotNull ConsumerRefundChoiceRequest consumerRefundChoiceRequest, @NotNull InterfaceC11458a<? super C10137m<RefundResponse>> interfaceC11458a);
 
-    @POST("api/support/v1/consumer/refund/choice")
-    Object m8095h(@Body ConsumerRefundChoiceRequest consumerRefundChoiceRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/support/v2/consumer/{supportRequestId}/confirm")
+    Object m2732a0(@InterfaceC11761s(encoded = true, value = "supportRequestId") String str, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11754l
+    @InterfaceC11757o("api/support/v2/uploading/files")
+    Object m2703p(@InterfaceC11759q List<C4887z> list, @NotNull InterfaceC11458a<? super C10137m<SupportPictureUploadResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/support/v1/business/")
+    Object m2686x0(@InterfaceC11743a @NotNull BusinessSupportRequest businessSupportRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
 
     /* tracking */
-    @POST("api/tracking/v1/events")
-    Object m8131C(@Body TrackingEventsRequest trackingEventsRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11753k({"withoutAuthorization: true"})
+    @InterfaceC11757o("api/tracking/v1/anonymousEvents")
+    Object m2699r(@InterfaceC11743a @NotNull ConsentScreenEventRequest consentScreenEventRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11757o("api/tracking/v1/events")
+    Object m2694t0(@InterfaceC11743a @NotNull TrackingEventsRequest trackingEventsRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
 
     /* user */
-    @POST("api/user/v1/")
-    Object m8079x(Continuation<? super UserData> dVar);
+    @InterfaceC11757o("api/user/v2/")
+    Object m2773D(@NotNull InterfaceC11458a<? super C10137m<UserData>> interfaceC11458a);
 
-    @POST("api/user/v1/update")
-    Object m8086q(@Body UserData userData, Continuation<? super UserData> dVar);
+    @InterfaceC11757o("api/user/v2/profileDetails")
+    Object m2772D0(@NotNull InterfaceC11458a<? super C10137m<ProfilePageResponse>> interfaceC11458a);
 
-    @POST("api/user/v1/changePassword")
-    Object m8125I(@Body ChangePasswordRequest changePasswordRequest, Continuation<? super AbstractC7625i0> dVar);
-    
-    @POST("api/user/v1/resetPassword")
-    Object m8077z(@Body ResetPasswordRequest resetPasswordRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/user/v2/updatePushNotificationSettings")
+    Object m2769F(@InterfaceC11743a @NotNull PushNotificationSettingsRequestResponse pushNotificationSettingsRequestResponse, @NotNull InterfaceC11458a<? super C10137m<PushNotificationSettingsRequestResponse>> interfaceC11458a);
 
-    @POST("api/user/v1/resendWelcomeEmail")
-    Object m8087p(@Body ResendWelcomeEmailRequest resendWelcomeEmailRequest, Continuation<? super AbstractC7625i0> dVar);
+    @InterfaceC11757o("api/user/demographics/update")
+    Object m2761J(@InterfaceC11743a @NotNull UserDemographicsUpdate userDemographicsUpdate, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
-    @POST("api/user/v1/confirmEmail/{token}")
-    Object m8107a(@Path(encoded = true, value = "token") String str, Continuation<? super C7735b0<AbstractC7625i0>> dVar);
+    @InterfaceC11757o("api/user/v2/emailChangeRequest")
+    Object m2757L(@InterfaceC11743a @NotNull EmailChangeRequest emailChangeRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/v2/getEmailStatus")
+    Object m2683z(@NotNull InterfaceC11458a<? super C10137m<EmailStatusResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/v2/getPushNotificationSettings")
+    Object m2682z0(@NotNull InterfaceC11458a<? super C10137m<PushNotificationSettingsRequestResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/v2/updateUserReferralAcceptanceState")
+    Object m2709m(@InterfaceC11743a @NotNull UserReferralUpdateAcceptanceStateRequest userReferralUpdateAcceptanceStateRequest, @NotNull InterfaceC11458a<? super C10137m<UserReferralResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/v2/confirmEmail/{token}")
+    Object m2707n(@InterfaceC11761s(encoded = true, value = "token") @NotNull String str, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/v2/mePage")
+    Object m2700q0(@NotNull InterfaceC11458a<? super C10137m<MePageResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/badge/getBadge")
+    Object m2747Q(@InterfaceC11743a @NotNull UserBadgeDetailsRequest userBadgeDetailsRequest, @NotNull InterfaceC11458a<? super C10137m<UserBadgeDetailsResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/v2/resendWelcomeEmail")
+    Object m2742S0(@InterfaceC11743a @NotNull ResendWelcomeEmailRequest resendWelcomeEmailRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/v2/update")
+    Object m2737W(@InterfaceC11743a @NotNull UserData userData, @NotNull InterfaceC11458a<? super C10137m<UserData>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/badge")
+    Object m2725e(@NotNull InterfaceC11458a<? super C10137m<UserBadgesResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/user/favorite/v1/{itemId}/update")
+    Object m2720g0(@InterfaceC11761s(encoded = true, value = "itemId") String str, @InterfaceC11743a @NotNull SetFavoriteRequest setFavoriteRequest, @NotNull InterfaceC11458a<? super C10137m<? extends AbstractC4869j0>> interfaceC11458a);
 
 
     /* voucher */
-    @POST("api/voucher/v3/")
-    Object m8124J(@Body VoucherListRequest voucherListRequest, Continuation<? super VoucherList> dVar);
-    
-    @POST("api/voucher/v3/add")
-    Maybe<AddVoucherResponse> m8089n(@Body AddVoucherRequest addVoucherRequest);
+    @InterfaceC11757o("api/voucher/v4/used")
+    Object m2763I(@NotNull InterfaceC11458a<? super C10137m<BasicVoucherList>> interfaceC11458a);
 
-    @POST("api/voucher/v3/{voucherId}")
-    Object m8128F(@Path(encoded = true, value = "voucherId") String str, @Body VoucherDetailRequest voucherDetailRequest, Continuation<? super VoucherDetails> dVar);
+    @InterfaceC11757o("api/voucher/v3/")
+    Object m2750O0(@InterfaceC11743a @NotNull VoucherListRequest voucherListRequest, @NotNull InterfaceC11458a<? super C10137m<VoucherList>> interfaceC11458a);
 
-    @POST("api/voucher/v3/{voucherId}/storeFilterList")
-    Object m8120N(@Path(encoded = true, value = "voucherId") String str, @Body VoucherFilterRequest voucherFilterRequest, Continuation<? super VoucherFilterResponse> dVar);
+    @InterfaceC11757o("api/voucher/v3/add")
+    Object m2744R0(@InterfaceC11743a @NotNull AddVoucherRequest addVoucherRequest, @NotNull InterfaceC11458a<? super C10137m<AddVoucherResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/voucher/v4/active")
+    Object m2741T(@NotNull InterfaceC11458a<? super C10137m<BasicVoucherList>> interfaceC11458a);
+
+    @InterfaceC11757o("api/voucher/v3/{voucherId}/storeFilterList")
+    Object m2726d0(@InterfaceC11761s(encoded = true, value = "voucherId") String str, @InterfaceC11743a @NotNull VoucherFilterRequest voucherFilterRequest, @NotNull InterfaceC11458a<? super C10137m<VoucherFilterResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/voucher/v3/{voucherId}")
+    Object m2722f0(@InterfaceC11761s(encoded = true, value = "voucherId") String str, @InterfaceC11743a @NotNull VoucherDetailRequest voucherDetailRequest, @NotNull InterfaceC11458a<? super C10137m<VoucherDetails>> interfaceC11458a);
+
+    @InterfaceC11757o("api/voucher/v4/{voucherId}")
+    Object m2719h(@InterfaceC11761s(encoded = true, value = "voucherId") String str, @NotNull InterfaceC11458a<? super C10137m<VoucherDetailsResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/voucher/v4/add")
+    Object m2701q(@InterfaceC11743a @NotNull AddVoucherRequest addVoucherRequest, @NotNull InterfaceC11458a<? super C10137m<AddNewVoucherResponse>> interfaceC11458a);
+
+    @InterfaceC11757o("api/voucher/v4/{voucherId}/storeFilterList")
+    Object m2685y(@InterfaceC11761s(encoded = true, value = "voucherId") String str, @NotNull InterfaceC11458a<? super C10137m<VoucherFilterResponse>> interfaceC11458a);
+
+
+    /* widget */
+    @InterfaceC11757o("api/widget/v1/getfavorites")
+    Object m2735Y(@InterfaceC11743a @NotNull FavouriteWidgetRequest favouriteWidgetRequest, @NotNull InterfaceC11458a<? super C10137m<FavouriteWidgetResponse>> interfaceC11458a);
 
 
     /* external */
-    @GET("https://meta.apptoogoodtogo.com/env/v1/list.json")
-    Object m8113U(Continuation<? super EnvironmentListResult> dVar);
+    @InterfaceC11748f("https://meta.apptoogoodtogo.com/env/v1/list.json")
+    Object m2729c(@NotNull InterfaceC11458a<? super C10137m<EnvironmentListResult>> interfaceC11458a);
+
 }
